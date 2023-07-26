@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { Layout } from 'antd';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
+import Map from './components/Map';
+import store from './redux/store';
+import './styles/antd.css';
+import './index.css';
+
+const { Content } = Layout;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Layout>
+          <Header />
+        <Sidebar />
+        <Layout>
+          <Content style={{ padding: '20px' }}>
+            <Map />
+          </Content>
+          <Footer />
+        </Layout>
+      </Layout>
+    </Provider>
   );
 }
 
 export default App;
+
+
